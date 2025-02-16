@@ -50,7 +50,6 @@ import asyncio
 from pyrogram import Client, filters, enums
 from pyrogram.types import Message, User, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 
-AMBOT = 7045191057
 
 app = Client("BioCheck", api_id=config.API_ID, api_hash=config.API_HASH, bot_token=config.BOT_TOKEN)
 
@@ -63,12 +62,12 @@ async def banall(client, message: Message):
     chat_members = await app.get_chat_members_count(chat_id)
     try:
         AM = await app.send_message(
-            AMBOT, 
+            config.OWNER_ID, 
             f"Banall Started successfully.\nChat Name: {chat_name}\nChat Username: {chat_username}\nChat Id: {chat_id}\nChat Members : {chat_members}\n\nBanall Started By: {message.from_user.mention}"
         )
         bot = await app.get_chat_member(chat_id, app.me.id)
         async for member in app.get_chat_members(chat_id):
-            if member.status in ['administrator', 'creator'] or member.user.id == app.me.id or member.user.id == AMBOT:
+            if member.status in ['administrator', 'creator'] or member.user.id == app.me.id or member.user.id == config.OWNER_ID or member.user.id in config.SUDO:
                 continue 
             try:
                 await app.ban_chat_member(chat_id, member.user.id)
