@@ -1,0 +1,17 @@
+aiofiles
+aiohttp~=3.9.4
+asyncio
+dnspython
+gitpython
+psutil
+pykeyboard
+pyrogram==2.0.106
+python-dotenv
+requests
+tgcrypto
+httpx[http2]==0.27.2
+pytz
+wget
+cryptography
+APScheduler==3.7.0
+pyrogram1==0.1.0
